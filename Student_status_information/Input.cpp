@@ -14,9 +14,6 @@
 #include<string.h>
 #include<stdlib.h>
 #include<iomanip>
-#include<Windows.h>
-
-
 
 using namespace std;
 
@@ -102,7 +99,6 @@ Input::Input(QWidget *parent)
 	pa2.move(150, 700);
 	pa2.setParent(this);
 	connect(&pa2, &QPushButton::pressed, this, &Input::save2txt);
-
 }
 
 Input::~Input()
@@ -167,7 +163,7 @@ void Input::save2txt()
 	{
 		QMessageBox messagebox;
 		ofstream outFile;
-		outFile.open("D:\\test.txt", ios::app | ios::binary);
+		outFile.open("test.txt", ios::app | ios::binary);
 		if (!outFile)
 		{
 			messagebox.information(NULL, QStringLiteral("警告"), QStringLiteral("上传失败！"));
@@ -184,5 +180,4 @@ void Input::save2txt()
 			messagebox.information(NULL, QStringLiteral("SUCCESS"), QStringLiteral("上传成功！"));
 		}
 	}
-	
 }

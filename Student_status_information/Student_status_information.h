@@ -16,7 +16,7 @@ class Student_status_information : public QMainWindow
 
 public:
 	Student_status_information(QWidget *parent = Q_NULLPTR);
-	
+
 	QPushButton a1;
 	QPushButton a2;
 	QPushButton a3;
@@ -25,18 +25,19 @@ public:
 	void cw2inquire();
 	void cw2input();
 	void cw2modify();
+	void cw22modify();
 	void cw2delete();
 
 	void dealinquire();
-	void deal2inquire();
 	void dealinput();
+	void dealdelete();
+	void dealmodify();
 
 private:
 	Ui::Student_status_informationClass ui;
-	
+
 	Inquire i;
 	Input p;
 	modify m;
 	Delete d;
-	
 };

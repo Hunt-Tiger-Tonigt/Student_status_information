@@ -13,6 +13,8 @@
 
 #include "Input.h"
 #include "Inquire.h"
+#include "Delete.h"
+#include "modify.h"
 
 #define N 80
 
@@ -22,7 +24,7 @@ Student_status_information::Student_status_information(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	
+
 	//设置窗口图标
 	QIcon icon("C:/Users/wyc/source/repos/Student_status_information/Icon/icon1.ico");
 	setWindowIcon(icon);
@@ -54,11 +56,11 @@ Student_status_information::Student_status_information(QWidget *parent)
 	(
 		"QPushButton{background-color:rgb(255,215,0); color: rgb(25,25,112); border-radius: 20px; border: 2px groove gray;font:bold 25px;font-size:40px;}"
 		"QPushButton:hover{background-color:red; color: black;}"
-		"QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }" 
+		"QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }"
 	);
 	a1.resize(300, 100);
 	a1.move(50, 200);
-	
+
 	//设置按钮2：录入
 	a2.setText(QStringLiteral("学籍信息录入"));
 	a2.setParent(this);
@@ -97,10 +99,15 @@ Student_status_information::Student_status_information(QWidget *parent)
 
 	//按钮信号处理
 	connect(&a1, &QPushButton::clicked, this, &Student_status_information::cw2inquire);
-	connect(&i, &Inquire::mysignal, this, &Student_status_information::dealinquire);
 	connect(&a2, &QPushButton::clicked, this, &Student_status_information::cw2input);
-	connect(&p, &Input::psignal, this, &Student_status_information::dealinput);
+	connect(&a3, &QPushButton::pressed, this, &Student_status_information::cw2modify);
+	connect(&a3, &QPushButton::clicked, this, &Student_status_information::cw22modify);
+	connect(&a4, &QPushButton::clicked, this, &Student_status_information::cw2delete);
 
+	connect(&i, &Inquire::mysignal, this, &Student_status_information::dealinquire);
+	connect(&p, &Input::psignal, this, &Student_status_information::dealinput);
+	connect(&m, &modify::mmysignal, this, &Student_status_information::dealmodify);
+	connect(&d, &Delete::dmysignal, this, &Student_status_information::dealdelete);
 }
 
 void Student_status_information::cw2inquire()
@@ -121,6 +128,14 @@ void Student_status_information::cw2modify()
 	this->hide();
 }
 
+void Student_status_information::cw22modify()
+{
+	//显示开发者信息
+	QMessageBox messagebox;
+	messagebox.information(NULL, QStringLiteral("请输入修改项"), QStringLiteral("  1：修改姓名  \n  2：修改性别  \n  3：修改学号  \n  4：修改宿舍号  \n  5：修改联系方式  "));
+	messagebox.show();
+}
+
 void Student_status_information::cw2delete()
 {
 	d.show();
@@ -136,5 +151,17 @@ void Student_status_information::dealinquire()
 void Student_status_information::dealinput()
 {
 	p.hide();
+	this->show();
+}
+
+void Student_status_information::dealdelete()
+{
+	d.hide();
+	this->show();
+}
+
+void Student_status_information::dealmodify()
+{
+	m.hide();
 	this->show();
 }

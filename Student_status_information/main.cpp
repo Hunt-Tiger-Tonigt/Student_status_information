@@ -1,7 +1,6 @@
 #include "Student_status_information.h"
 #include <QtWidgets/QApplication>
 
-
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);

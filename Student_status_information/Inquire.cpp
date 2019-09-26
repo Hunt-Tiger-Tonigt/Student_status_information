@@ -74,7 +74,6 @@ Inquire::Inquire(QWidget *parent)
 	ia2.move(150, 400);
 	ia2.setParent(this);
 	connect(&ia2, &QPushButton::pressed, this, &Inquire::ifind);
-
 }
 
 Inquire::~Inquire()
@@ -90,7 +89,7 @@ string readTxt(int line)
 {
 	//line行数限制 1 - lines
 	ifstream text;
-	text.open("D://test.txt", ios::in);
+	text.open("test.txt", ios::in);
 	vector<string> strVec;
 	while (!text.eof())  //行0 - 行lines对应strvect[0] - strvect[lines]
 	{
@@ -135,10 +134,10 @@ void Inquire::ifind()
 	const char *charname = strname.c_str();
 
 	ofstream outFile;
-	outFile.open("C://Users//wyc//source//repos//wyc//Student_status_information//lins//name.txt", ios::out | ios::binary);
+	outFile.open("name.txt", ios::out | ios::binary);
 	outFile << charname;
 	outFile.close();
-	ifstream ifile("C://Users//wyc//source//repos//wyc//Student_status_information//lins//name.txt");
+	ifstream ifile("name.txt");
 	ostringstream buf;
 	char ch;
 	while (buf&&ifile.get(ch))
@@ -150,9 +149,9 @@ void Inquire::ifind()
 		QMessageBox message;
 		message.warning(NULL, QStringLiteral("错误"), QStringLiteral("  未填写姓名信息！  "));
 	}
-	
+
 	int m = 0, n = 0;
-	ifstream in("D://test.txt");
+	ifstream in("test.txt");
 	string  s;
 	while (getline(in, s))
 	{

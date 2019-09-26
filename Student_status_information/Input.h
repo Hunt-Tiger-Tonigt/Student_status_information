@@ -18,10 +18,9 @@ public:
 	QPushButton pa1;
 	QPushButton pa2;
 
-
 	void back();
 	void save2txt();
-	
+
 signals:
 	void psignal();
 
@@ -33,6 +32,3 @@ private:
 	QLineEdit *dormitoryinput;
 	QLineEdit *numberinput;
 };
-
-
-
