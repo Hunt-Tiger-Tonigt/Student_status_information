@@ -20,12 +20,10 @@ public:
 
 
 	void back();
-	void bace();
 	void save2txt();
 	
 signals:
 	void psignal();
-	void p2signal();
 
 private:
 	Ui::Input ui;

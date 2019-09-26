@@ -14,6 +14,8 @@
 #include<string.h>
 #include<stdlib.h>
 #include<iomanip>
+#include<Windows.h>
+
 
 
 using namespace std;
@@ -100,7 +102,6 @@ Input::Input(QWidget *parent)
 	pa2.move(150, 700);
 	pa2.setParent(this);
 	connect(&pa2, &QPushButton::pressed, this, &Input::save2txt);
-	connect(&pa2, &QPushButton::clicked, this, &Input::bace);
 
 }
 
@@ -111,11 +112,6 @@ Input::~Input()
 void Input::back()
 {
 	emit psignal();
-}
-
-void Input::bace()
-{
-	emit p2signal();
 }
 
 void Input::save2txt()
@@ -169,22 +165,24 @@ void Input::save2txt()
 	}
 	else
 	{
-		ofstream fout;
-		fout.open("C:\\Users\\wyc\\source\\repos\\wyc\\Student_status_information\\lins\\name.txt", ios::out | ios::trunc);
-		fout << charname << endl;
-		fout.close();
-		fout.open("C:\\Users\\wyc\\source\\repos\\wyc\\Student_status_information\\lins\\gender.txt", ios::out | ios::trunc);
-		fout << chargender << endl;
-		fout.close();
-		fout.open("C:\\Users\\wyc\\source\\repos\\wyc\\Student_status_information\\lins\\ID.txt", ios::out | ios::trunc);
-		fout << charID << endl;
-		fout.close();
-		fout.open("C:\\Users\\wyc\\source\\repos\\wyc\\Student_status_information\\lins\\dormitory.txt", ios::out | ios::trunc);
-		fout << chardormitory << endl;
-		fout.close();
-		fout.open("C:\\Users\\wyc\\source\\repos\\wyc\\Student_status_information\\lins\\number.txt", ios::out | ios::trunc);
-		fout << charnumber << endl;
-		fout.close();
+		QMessageBox messagebox;
+		ofstream outFile;
+		outFile.open("D:\\test.txt", ios::app | ios::binary);
+		if (!outFile)
+		{
+			messagebox.information(NULL, QStringLiteral("警告"), QStringLiteral("上传失败！"));
+			abort();
+		}
+		else
+		{
+			outFile << charname << endl;
+			outFile << chargender << endl;
+			outFile << charID << endl;
+			outFile << chardormitory << endl;
+			outFile << charnumber << endl;
+			outFile.close();
+			messagebox.information(NULL, QStringLiteral("SUCCESS"), QStringLiteral("上传成功！"));
+		}
 	}
 	
 }

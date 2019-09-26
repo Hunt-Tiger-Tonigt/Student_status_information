@@ -28,8 +28,8 @@ public:
 	void cw2delete();
 
 	void dealinquire();
+	void deal2inquire();
 	void dealinput();
-	void deal2input();
 
 private:
 	Ui::Student_status_informationClass ui;

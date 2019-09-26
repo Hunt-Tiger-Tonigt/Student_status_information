@@ -14,12 +14,16 @@ public:
 	~Inquire();
 
 	QPushButton ia1;
+	QPushButton ia2;
 
-	void back();
+	void iback();
+	void ifind();
 
 signals:
 	void mysignal();
 
 private:
 	Ui::Inquire ui;
+
+	QLineEdit* nameinquire;
 };
